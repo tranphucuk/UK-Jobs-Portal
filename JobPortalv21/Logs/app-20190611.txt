@@ -1,0 +1,1 @@
+2019-06-11T00:20:15.2648297+01:00 0HLNDV8OO8D68:00000001 [WRN] No type was specified for the decimal column '"Value5"' on entity type '"SystemConfig"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'. (b5b4253a)

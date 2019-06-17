@@ -1,0 +1,95 @@
+﻿<div class="modal fade" id="add-edit-job" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel"><strong>Add/Edit Job</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <br />
+                <form class="form-horizontal form-label-left" role="form" id="frm-job">
+                    <input type="hidden" id="hid-job-id" />
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Industry</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" class="form-control" name="txtJobIndustry" id="txt-job-name">
+                            <span class="fa fa-trophy form-control-feedback right"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Company</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" class="form-control" name="txtJobCompany" id="txt-job-company">
+                            <span class="fa fa-group form-control-feedback right"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Website</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" class="form-control" name="txtJobWebsite" id="txt-job-website">
+                            <span class="fa fa-chrome form-control-feedback right"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">City</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" class="form-control" name="txtJobCity" id="txt-job-city">
+                            <span class="fa fa-institution form-control-feedback right"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Tier</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <select class="form-control" name="ddlJoxTier" id="ddl-bind-tier"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Tags</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <select class="form-control select-job-tag" name="txtJobTags" multiple data-placeholder="Select tags..."></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Description</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9" id="txt-job-description">
+                            <textarea id="txtJobContent" name="txtJobDescription" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="frm-job-created">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Created at</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" readonly class="form-control" id="txt-job-created-at">
+                            <span class="fa fa-calendar form-control-feedback right"></span>
+                        </div>
+                    </div>
+                    <div class="form-group" id="frm-job-modified">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Modified at</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" readonly class="form-control" id="txt-job-modified-at">
+                            <span class="fa fa-calendar form-control-feedback right"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-9 col-sm-offset-2 col-xs-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="ck-job-status" checked="checked" /> Status
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btn-save-job">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

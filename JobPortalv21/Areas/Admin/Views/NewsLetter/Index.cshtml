@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "Newsletter";
+}
+
+@section Scripts{
+    <script src="~/app/controller/newsletter/newsletter.min.js"></script>
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Newsletter Management</h3>
+    </div>
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+            <div class="input-group">
+                <input type="text" id="txt-newsletter-keyword" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-info" title="Search..." id="btn-search-newsletter" type="button">Go!</button>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-2 col-sm-2 col-xs-12 form-group pull-right">
+            <div class="input-group-btn">
+                <button id="btn-create-newsletter" title="Create" class="form-control btn-info">Create</button>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <table class="table table-bordered table-striped" id="tbl-newsletter">
+                        <thead>
+                            <tr>
+                                <th width="3%">ID</th>
+                                <th>Title</th>
+                                <th>Total receivers</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th width="9%">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl-newsletter-content"></tbody>
+                    </table>
+                    <!--Pageination-->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            Show <select id="ddlShowPage">
+                                <option value="10" selected="selected">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </select>
+                            <span class="item-per-page">
+                                Newsletter/Page.
+                            </span>
+                            Total: <strong id="lbl-total-newsletter"></strong>
+                        </div>
+                        <div class="col-sm-5 pull-right dataTables_paginate">
+                            <ul id="pagination-newsletter" class="pagination-sm pull-right"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="tbl-newsletter-template" type="x-tmpl-mustache">
+    <tr>
+        <td><strong>{{Id}}</strong></td>
+        <td>{{Title}}</td>
+        <td>{{TotalReceiver}}</td>
+        <td>{{CreatedDate}}</td>
+        <td>{{{Status}}}</td>
+        <td>
+            <button class="btn btn-sm btn-secondary btnUpdateNewsletter" title="Edit" data-id="{{Id}}"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-sm btn-dark btnSendNewsletter" title="Send newsletter to all users" data-id="{{Id}}"><i class="fa fa-flag"></i></button>
+        </td>
+    </tr>
+</script>
+<partial name="_AddEditNewsletter">

@@ -1,0 +1,140 @@
+﻿<div class="modal fade" id="add-edit-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel"><strong>Add/Edit User</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <br />
+                <form class="form-horizontal form-label-left" role="form" id="frm-user">
+                    <input type="hidden" id="hid-user-id" />
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">User name</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" class="form-control" name="txtUsername" id="txt-user-name" placeholder="Username...">
+                            <span class="fa fa-user form-control-feedback right"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="frm-user-password">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Password</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="password" class="form-control" name="txtUserPassword" id="txt-user-password" placeholder="Password...">
+                            <span class="fa fa-key form-control-feedback right"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Full name</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" class="form-control" name="txtUserFullname" id="txt-user-fullname" placeholder="Fullname...">
+                            <span class="fa fa-pencil form-control-feedback right"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Email</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" class="form-control" name="txtUserEmail" id="txt-user-email" placeholder="Email...">
+                            <span class="fa fa-envelope form-control-feedback right"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Phone</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" class="form-control" name="txtUserPhoneNumber" id="txt-phone-number" placeholder="Phone...">
+                            <span class="fa fa-phone form-control-feedback right"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Avatar</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="btn-avatar-file" accept="image/*" style="display:none" />
+                                <input type="text" name="txtUserAvatar" class="form-control" id="txt-user-avatar" readonly />
+                                <div class="input-group-btn">
+                                    <input type="button" id="btn-avatar-img" class="btn btn-dark" value="Browser" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Gender</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <label class="radio-inline"><input type="radio" checked name="sex" id="rad-user-male" value="0">Male</label>
+                            <label class="radio-inline"><input type="radio" name="sex" id="rad-user-female" value="1">Female</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Birthday</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" data-provide="datepicker" readonly class="form-control" name="txtUserBirthday" id="txt-user-birthday">
+                            <span class="fa fa-calendar form-control-feedback right"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Address</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" class="form-control" name="txtUserAddress" id="txt-user-address" placeholder="Address...">
+                            <span class="fa fa-home form-control-feedback right"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="frm-created-date">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Created at</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" readonly class="form-control" name="txtCreatedDate" id="txt-created-date">
+                            <span class="fa fa-calendar form-control-feedback right"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="frm-modified-date">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Modified at</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" readonly class="form-control" name="txtModifiedDate" id="txt-modified-date">
+                            <span class="fa fa-calendar form-control-feedback right"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Status</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="ck-user-status" checked="checked" /> Status
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="frm-role-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Role</label>
+                        <div class="col-sm-9 col-md-9  col-xs-12 checkbox">
+                            <label>
+                                <input type="checkbox" value="Admin" name="ckRole" id="ck-admin-role" /> Admin
+                            </label>
+                            <label>
+                                <input type="checkbox" value="Staff" name="ckRole" id="ck-staff-role" /> Staff
+                            </label>
+                            <label>
+                                <input type="checkbox" value="Customer" name="ckRole" id="ck-customer-role" /> Customer
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btn-save-user">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model JobPortal.Utilities.Dtos.PageResultBase
+@{
+    var urlTemplate = Url.Action() + "?page={0}";
+    var request = ViewContext.HttpContext.Request;
+    foreach (var key in request.Query.Keys)
+    {
+        if (key == "page")
+        {
+            continue;
+        }
+        if (!string.IsNullOrEmpty(request.Query[key]))
+        {
+            urlTemplate += "&" + key + "=" + request.Query[key];
+        }
+    }
+    var startIndex = Math.Max(Model.CurentPage - 3, 1);
+    var endIndex = Math.Min(Model.CurentPage + 3, Model.PageCount);
+}
+
+<div class="row mt-5">
+    <div class="col-md-12 text-center">
+        <div class="site-block-27">
+            @if (Model.PageCount > 1)
+            {
+                <ul>
+                    @if (Model.CurentPage == startIndex)
+                    {
+                        <li><i class="icon-keyboard_arrow_left h5"></i></li>
+
+                    }
+                    else
+                    {
+                        <li><a href="@urlTemplate.Replace("{0}","1")"><i class="icon-keyboard_arrow_left h5"></i></a></li>
+                    }
+                    @for (int i = startIndex; i <= endIndex; i++)
+                    {
+                        if (i == Model.CurentPage)
+                        {
+                            <li class="active"><span>@i</span></li>
+                            @*<li><a class="active"><span>@i</span></a></li>*@
+                        }
+                        else
+                        {
+                            <li><a href="@urlTemplate.Replace("{0}",i.ToString())">@i</a></li>
+                        }
+                    }
+                    @if (Model.CurentPage == endIndex)
+                    {
+                        <li><i class="icon-keyboard_arrow_right h5"></i></li>
+                    }
+                    else
+                    {
+                        <li><a href="@urlTemplate.Replace("{0}",Model.PageCount.ToString())"><i class="icon-keyboard_arrow_right h5"></i></a></li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>

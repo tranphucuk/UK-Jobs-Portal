@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "User";
+}
+
+
+@section Styles{
+    <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/app/controller/user/appUser.min.js"></script>
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>User Management</h3>
+    </div>
+    <div class="title_right">
+        <div class="col-md-4 col-sm-5 col-xs-12 pull-right">
+            <div class="input-group">
+                <input type="text" id="txt-keyword-user" class="form-control" placeholder="Search for...">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" id="btn-search-user" type="button">Go!</button>
+                </div>
+            </div>
+        </div>
+        @{
+            if ((await AuthorizationService.AuthorizeAsync(User, "USER", Operations.Create)).Succeeded)
+            {
+            <div class="col-md-2 col-sm-2 col-xs-12 form-group pull-right">
+                <div class="input-group-btn">
+                    <button id="btn-create-user" class="form-control btn-info">Create</button>
+                </div>
+            </div>
+            }
+        }
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Fullname</th>
+                                <th>Avatar</th>
+                                <th>Email</th>
+                                <th>Phone number</th>
+                                <th>Created Date</th>
+                                <th>Status</th>
+                                <th width="8%"><i class="glyphicon glyphicon-edit"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl-render-user"></tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span>Show </span>
+                            <select id="ddl-display-number" style="width:70px;height:27px">
+                                <option value="10" selected="selected">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="50">50</option>
+                            </select>
+                            <span>Total: </span>
+                            <strong id="total-job"></strong>
+                        </div>
+
+                        <div class="col-sm-5 pull-right dataTables_paginate">
+                            <ul id="pagination-user" class="pagination-sm pull-right"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="x-tmpl-mustache" id="tbl-user-template">
+    <tr data-id="{{Id}}">
+        <td>{{{Username}}}</td>
+        <td>{{{Fullname}}}</td>
+        <td>{{{Avatar}}}</td>
+        <td>{{{Email}}}</td>
+        <td>{{{Phone}}}</td>
+        <td>{{{CreatedDate}}}</td>
+        <td>{{{Status}}}</td>
+        <td>
+            @{
+                if ((await AuthorizationService.AuthorizeAsync(User, "USER", Operations.Update)).Succeeded)
+                {
+                <button type="button" class="btn btn-sm btn-dark btn-edit-user" data-id="{{Id}}"><i class="fa fa-pencil"></i></button>
+                }
+                if ((await AuthorizationService.AuthorizeAsync(User, "USER", Operations.Delete)).Succeeded)
+                {
+                <button type="button" class="btn btn-sm btn-danger btn-delete-user" data-id="{{Id}}"><i class="fa fa-trash"></i></button>
+                }
+            }
+        </td>
+    </tr>
+</script>
+<partial name="_AddEditUser.cshtml">

@@ -1,0 +1,94 @@
+﻿@model JobPortalv21.Models.Account.RegisterViewModel
+@using PaulMiami.AspNetCore.Mvc.Recaptcha
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="unit-5 overlay" style="background-image: url('/client-side/images/hero_bg_2.jpg');">
+    <div class="container text-center">
+        <h2 class="mb-0">New Account</h2>
+        <p class="mb-0 unit-6"><a href="/">Home</a></p>
+    </div>
+</div>
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 mb-5">
+                <form method="post" id="frm-register" class="p-5 bg-white">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="font-weight-bold" for="email">Email</label>
+                            <input type="text" id="email" name="Email" class="form-control" placeholder="Email Address">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="font-weight-bold" for="fullname">Full Name</label>
+                            <input type="text" name="FullName" id="fullname" class="form-control" placeholder="Full Name">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label class="font-weight-bold" for="email">Password</label>
+                            <input type="password" name="Password" id="txtPassword" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="font-weight-bold" for="email">Confirm Password</label>
+                            <input type="password" name="ConfirmPassword" id="txtConfirmPassword" class="form-control" placeholder="Confirm Password">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <recaptcha type="RecaptchaType.Image" />
+                            <span class="text-danger" id="recaptchaErrorMessage"></span>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Register" class="btn btn-primary  py-2 px-4 btn-register">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4">
+                <div class="p-4 mb-3 bg-white">
+                    <div class="register-benefits">
+                        <h5 class="reg-title">Sign up today and you will be able to :</h5>
+                        <ul class="list-not">
+                            <li>Speed your way through dashboard</li>
+                            <li>Note your own job easily</li>
+                            <li>Keep a record of all your job wishlist</li>
+                        </ul>
+                    </div>
+                    <span>Already have an account?</span>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="button" onclick="window.location.href='/login.html'" value="Login here" class="btn btn-primary  py-2 px-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 mb-3 bg-white">
+                    <h3 class="h5 text-black mb-3">Contact Info</h3>
+                    <p class="mb-0 font-weight-bold">Address</p>
+                    <p class="mb-4">Salford, Manchester, United Kingdom</p>
+                    <p class="mb-0 font-weight-bold">Email Address</p>
+                    <p class="mb-0"><a class="col-link">jobportaluk@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/src/jquery.validate.unobtrusive.js"></script>
+    <recaptcha-script validation-message-element-id="recaptchaErrorMessage" />
+    <script src="~/client-side/js/app/account/account.min.js"></script>
+}

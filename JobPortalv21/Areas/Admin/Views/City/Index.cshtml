@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "City Report";
+}
+
+@section Scripts{
+    <script src="~/app/controller/report/cityReport.js"></script>
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>City Visitor Report</h3>
+    </div>
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+            <div class="input-group">
+                <input type="text" id="txt-city-keyword" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-info" title="Search..." id="btn-search-city" type="button">Go!</button>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-right">
+            <div class="input-group-btn">
+                <select class="form-control" id="ddl-city-options">
+                    <option value="0">Latest date</option>
+                    <option value="1">Most view</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <table class="table table-bordered table-striped" id="tbl-city">
+                        <thead>
+                            <tr>
+                                <th width="3%">ID</th>
+                                <th>City</th>
+                                <th>Search Count</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl-report-content"></tbody>
+                    </table>
+                    <!--Pageination-->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            Show <select id="ddlShowPage">
+                                <option value="10" selected="selected">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </select>
+                            <span class="item-per-page">
+                                Report/Page.
+                            </span>
+                            Total: <strong id="lbl-total-report"></strong>
+                        </div>
+                        <div class="col-sm-5 pull-right dataTables_paginate">
+                            <ul id="pagination-city" class="pagination-sm pull-right"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="tbl-visitor-template" type="x-tmpl-mustache">
+    <tr>
+        <td><strong>{{Id}}</strong></td>
+        <td>{{City}}</td>
+        <td>{{SearchCount}}</td>
+        <td>{{DateView}}</td>
+    </tr>
+</script>

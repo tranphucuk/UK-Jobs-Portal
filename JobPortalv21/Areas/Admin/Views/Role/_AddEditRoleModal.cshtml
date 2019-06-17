@@ -1,0 +1,47 @@
+﻿<div class="modal fade" id="add-edit-role" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel"><strong>Add/Edit Role</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <br />
+                <form class="form-horizontal form-label-left" role="form" id="frm-role">
+                    <input type="hidden" id="hid-role-id" />
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Name</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" class="form-control" name="txtNameRole" id="txt-role-name">
+                            <span class="fa fa-edit form-control-feedback right"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-2">Description</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" class="form-control" name="txtRoleDescription" id="txt-role-description">
+                            <span class="fa fa-file-text form-control-feedback right"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-9 col-sm-offset-2 col-xs-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="ck-role-status" checked="checked" /> Status
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btn-save-role">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

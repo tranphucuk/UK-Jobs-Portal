@@ -1,0 +1,172 @@
+﻿@model JobPortalv21.Models.Job.JobDetailModel
+@using Microsoft.AspNetCore.Http.Extensions
+@using JobPortalv21.Extensions
+@using JobPortal.Data.Enum
+@{
+    ViewData["Title"] = Model.Job.Company;
+    ViewData["Keyword"] = Model.Job.Company;
+    ViewData["Description"] = $"{Model.Job.Industry} - {Model.Job.Company} - {Model.Job.City}";
+
+    var currentUrl = Context.Request.GetDisplayUrl();
+}
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/src/jquery.validate.unobtrusive.js"></script>
+    <script src="~/client-side/js/app/job/review.min.js"></script>
+    <script src="~/client-side/js/app/job/jobDetail.min.js"></script>
+}
+
+<div class="unit-5 overlay" style="background-image: url('/client-side/images/hero_bg_2.jpg');">
+    <div class="container text-center">
+        <h2 class="mb-0">@Model.Job.Company</h2>
+        <p class="mb-0 unit-6"><a href="/">Home</a></p>
+    </div>
+</div>
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 mb-5">
+                <div class="p-5 bg-white widen-size">
+                    <div class="mb-4 mb-md-5 mr-5 detail-wt">
+                        <div class="job-post-item-header d-flex align-items-center">
+                            <h2 class="mr-3 text-black h4">@Model.Job.Industry</h2>
+                        </div>
+                        <div class="job-post-item-body d-block d-md-flex">
+                            <div class="badge-wrap">
+                                Rating: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="job-post-item-body d-block d-md-flex">
+                            @if (Model.Job.Tier == Tier.Both)
+                            {
+                                <div class="mr-3"><a>Sponsor: Tier 2, Tier 5TW</a></div>
+                            }
+                            else
+                            {
+                                <div class="mr-3"><a>Sponsor: @(Model.Job.Tier.GetDescription<Tier>())</a></div>
+                            }
+                        </div>
+                        <div class="job-post-item-body d-block d-md-flex">
+                            <div class="mr-3"><a>Company: @Model.Job.Company</a></div>
+                        </div>
+                        <div class="job-post-item-body d-block d-md-flex">
+                            <div><span>Location: @Model.Job.City</span></div>
+                        </div>
+                        <div class="job-post-item-body d-block d-md-flex">
+                            @if (Model.Job.Website.Length > 40)
+                            {
+                                <div>Website:<a href="@Model.Job.Website" target="_blank"> @Model.Job.Website.Substring(0, 40)</a></div>
+                            }
+                            else
+                            {
+                                <div>Website:<a href="@Model.Job.Website" target="_blank"> @Model.Job.Website</a></div>
+                            }
+                        </div>
+                        @if (Model.Job.Social.Contains("facebook"))
+                        {
+                            <div class="job-post-item-body d-block d-md-flex">
+                                @if (Model.Job.Social.Length > 40)
+                                {
+                                    <div>Facebook:<a href="@Model.Job.Social" target="_blank"> Facebook</a></div>
+                                }
+                                else
+                                {
+                                    <div>Facebook:<a href="@Model.Job.Social" target="_blank"> Facebook</a></div>
+                                }
+                            </div>
+                        }
+                        @if (Model.Job.Social.Contains("linkedin"))
+                        {
+                            @if (Model.Job.Social.Length > 40)
+                            {
+                                <div class="job-post-item-body d-block d-md-flex">
+                                    <div>Linkedin:<a href="@Model.Job.Social" target="_blank"> Linkedin</a></div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="job-post-item-body d-block d-md-flex">
+                                    <div>Linkedin:<a href="@Model.Job.Social" target="_blank"> Linkedin</a></div>
+                                </div>
+                            }
+                        }
+
+                        <div class="job-post-item-body d-block d-md-flex">
+                            <div class="mr-3"><a>Date added: @Model.Job.AddedDate.ToShortDateString()</a></div>
+                        </div>
+                        <div class="share-box">
+                            <div class="title">Share to: </div>
+                            <div class="socials-box">
+                                <a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]=@currentUrl" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href="https://twitter.com/share?url=@currentUrl" target="_blank">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="https://plus.google.com/share?url=@currentUrl" target="_blank">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </div>
+
+                            @{
+                                if (Model.IsInWishlist)
+                                {
+                                    <p class="mt-5">
+                                        <a href="/my-wishlist.html" class="btn btn-primary py-2 px-4">In your wishlist</a>
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="mt-5">
+                                        <a href="#" id="btn-add-wishlist" data-id="@Model.Job.Id" class="btn btn-primary py-2 px-4">Add to wishlist</a>
+                                    </p>
+                                }
+                            }
+
+                        </div>
+                        <hr />
+                        <div class="job-post-item-body d-block d-md-flex">
+                            <div class="mr-3"><a><b>Company Review:</b> @(Model.Job.Review == null ? "no review available..." : Model.Job.Review)</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="p-4 mb-3 bg-white" style="height:80px">
+                    <div id="search">
+                        <form method="get" action="/search-company.html">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search company..." name="company">
+                                <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="p-4 mb-3 bg-white">
+                    <h3 class="h5 text-black mb-3 text-menu">Popular Tags</h3>
+                    <div class="job-tag">
+                        <ul class="tree-menu">
+                            @foreach (var tag in Model.Tags)
+                            {
+                                <li class="tag-style">
+                                    <a class="tag-link" href="/tags/@(tag.Id).html">@tag.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-4 mb-3 bg-white" style="height:80px">
+                    @*<h3 class="h5 text-black mb-3 text-menu">Popular Tags</h3>*@
+                    <p>
+                        <a href="#" data-id="@Model.Job.Id" id="give-feedback" class="btn btn-primary give-review  py-2 px-4">Give your review</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="_GiveReview">

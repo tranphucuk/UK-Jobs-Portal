@@ -1,0 +1,56 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="modal-review" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLongTitle"><strong>Review Details</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form class="form-horizontal form-font" role="form" id="frm-blog">
+                        <input type="hidden" id="hid-review-id" />
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <label class="control-label" for="name">Email</label>
+                                <div>
+                                    <input type="text" class="form-control" name="txtReviewEmail" id="txt-email" placeholder="Email..." />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <label class="control-label" for="name">Title</label>
+                                <div>
+                                    <input type="text" class="form-control" name="txtReviewTitle" id="txt-title" placeholder="Title..." />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="control-label" for="Content"></label>
+                                <div>
+                                    <textarea id="txt-review-content" style="width:100%" cols="8" rows="10" name="txtReviewContent" placeholder="Content..."></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" id="hid-review-date" />
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="ck-review-status" />
+                                        <span class="text">Active &nbsp;</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCancel" data-dismiss="modal">Close</button>
+                <button type="button" id="btn-save-review" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+

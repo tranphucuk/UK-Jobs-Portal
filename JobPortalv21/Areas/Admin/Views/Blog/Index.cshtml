@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Blog";
+}
+
+@section Scripts{
+    <script src="~/app/controller/blog/blog.min.js"></script>
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Blog Management</h3>
+    </div>
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+            <div class="input-group">
+                <input type="text" id="txt-blog-keyword" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-info" title="Search..." id="btn-search-blog" type="button">Go!</button>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-2 col-sm-2 col-xs-12 form-group pull-right">
+            <div class="input-group-btn">
+                <button id="btn-create-blog" title="Create" class="form-control btn-info">Create</button>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-right">
+            <div class="input-group-btn">
+                <select class="form-control" id="ddl-blog-options">
+                    <option value="0">Latest date</option>
+                    <option value="1">Most view</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <table class="table table-bordered table-striped" id="tbl-blog">
+                        <thead>
+                            <tr>
+                                <th width="3%">ID</th>
+                                <th>Name</th>
+                                <th>Thumbnail</th>
+                                <th>Date</th>
+                                <th>View</th>
+                                <th>Status</th>
+                                <th width="12%">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl-blog-content"></tbody>
+                    </table>
+                    <!--Pageination-->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            Show <select id="ddlShowPage">
+                                <option value="5" selected="selected">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                            <span class="item-per-page">
+                                Blog/Page.
+                            </span>
+                            Total Blog: <strong id="lbl-total-blog"></strong>
+                        </div>
+                        <div class="col-sm-5 pull-right dataTables_paginate">
+                            <ul id="pagination-blog" class="pagination-sm pull-right"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="tbl-blog-template" type="x-tmpl-mustache">
+    <tr>
+        <td><strong>{{Id}}</strong></td>
+        <td>{{Name}}</td>
+        <td>{{{Image}}}</td>
+        <td>{{CreatedDate}}</td>
+        <td>{{ViewCount}}</td>
+        <td>{{{Status}}}</td>
+        <td>
+            <button class="btn btn-sm btn-secondary btnUpdateBlog" title="Edit" data-id="{{Id}}"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-sm btn-danger btnDeleteBlog" title="Remove" data-id="{{Id}}"><i class="fa fa-trash"></i></button>
+        </td>
+    </tr>
+</script>
+<partial name="_AddEditBlogModal.cshtml">

@@ -1,0 +1,70 @@
+﻿@model JobPortalv21.Models.Job.JobTagModel
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["Keyword"] = Model.Keyword;
+    ViewData["Description"] = Model.Description;
+}
+
+<div class="unit-5 overlay" style="background-image: url('/client-side/images/hero_bg_2.jpg');">
+    <div class="container text-center">
+        <h2 class="mb-0">@Model.Keyword</h2>
+        <p class="mb-0 unit-6"><a href="/">Home</a></p>
+    </div>
+</div>
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row justify-content-start text-left mb-5">
+            <div class="col-md-9" data-aos="fade">
+                <span class="text-gray-500"></span>
+                <h2 class="font-weight-bold text-black"></h2>
+            </div>
+            <div class="col-md-3" data-aos="fade" data-aos-delay="200">
+                <div class="select-wrap mr-auto">
+                    <span class="icon-keyboard_arrow_down arrow-down"></span>
+                    <form action="/tags/@(Model.TagId).html" method="get">
+                        <select name="tier" asp-for="Tier" asp-items="Model.Tiers" onchange="this.form.submit()" class="form-control"></select>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @foreach (var job in Model.JobViewModels.Result)
+        {
+            <div class="row" data-aos="fade">
+                <div class="col-md-12">
+                    <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
+                        <div class="mb-4 mb-md-0 mr-5">
+                            <div class="job-post-item-header d-flex align-items-center">
+                                <h2 class="mr-3 text-black h4">
+                                    <a href="/@job.SeoAlias-@(job.Id).html" class="dev-link">@job.Company</a>
+                                </h2>
+                                <div class="badge-wrap">
+                                    <span class="bg-primary text-white badge py-2 px-4">A rating</span>
+                                </div>
+                            </div>
+                            <div class="job-post-item-body d-block d-md-flex">
+                                @{
+                                    if (job.Website.Length > 50)
+                                    {
+                                        <div class="mr-3"><i class="fa fa-globe"></i> <a href="@job.Website" target="_blank"> @job.Website.Substring(0, 30)...</a></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mr-3"><i class="fa fa-globe"></i> <a href="@job.Website" target="_blank"> @job.Website</a></div>
+                                    }
+                                }
+                                <div><span class="fl-bigmug-line-big104"></span> <span>@job.City</span></div>
+                            </div>
+                        </div>
+                        <div class="ml-auto d-none d-sm-block">
+                            <a href="/@job.SeoAlias-@(job.Id).html" class="btn btn-primary py-2">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @await Component.InvokeAsync("Pager", Model.JobViewModels)
+    </div>
+</div>
+
+

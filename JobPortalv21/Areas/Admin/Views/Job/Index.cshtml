@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewData["Title"] = "Job";
+}
+
+@section Styles{
+    <link href="~/lib/jQuery-contextMenu/dist/jquery.contextMenu.min.css" rel="stylesheet" />
+    <link href="~/lib/chosen/chosen.min.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/lib/jQuery-contextMenu/dist/jquery.contextMenu.min.js"></script>
+    <script src="~/lib/jQuery-contextMenu/dist/jquery.ui.position.min.js"></script>
+    <script src="~/lib/chosen/chosen.jquery.min.js"></script>
+    <script src="~/lib/chosen/chosen.proto.min.js"></script>
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <script src="~/app/controller/job/job.min.js"></script>
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Job Management</h3>
+    </div>
+    <div class="title_right">
+        <div class="col-md-4 col-sm-5 col-xs-12 pull-right">
+            <div class="input-group">
+                <input type="text" id="txt-keyword-job" class="form-control" placeholder="Search for...">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" id="btn-search-job" type="button">Go!</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12 form-group pull-right">
+            <select class="form-control" id="ddl-tier-info"></select>
+        </div>
+        @{
+            if ((await AuthorizationService.AuthorizeAsync(User, "JOB", Operations.Create)).Succeeded)
+            {
+                <div class="col-md-2 col-sm-2 col-xs-12 form-group pull-right">
+                    <div class="input-group-btn">
+                        <button id="btn-create-job" class="form-control btn-info">Create</button>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12 form-group pull-right">
+                    <div class="input-group-btn">
+                        <button id="btn-excel-modal" class="form-control btn-primary">Options</button>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Job</th>
+                                <th>Company</th>
+                                <th>Tier</th>
+                                <th>City</th>
+                                <th>website</th>
+                                <th>Status</th>
+                                <th width="8%"><i class="glyphicon glyphicon-edit"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl-render-job"></tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span>Show </span>
+                            <select id="ddl-display-number" style="width:70px;height:27px">
+                                <option value="10" selected="selected">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="50">50</option>
+                            </select>
+                            <span>Total: </span>
+                            <strong id="total-job"></strong>
+                        </div>
+
+                        <div class="col-sm-5 pull-right dataTables_paginate">
+                            <ul id="pagination-job" class="pagination-sm pull-right"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="x-tmpl-mustache" id="tbl-job-template">
+    <tr data-id="{{Id}}">
+        <td>{{{Job}}}</td>
+        <td>{{{Company}}}</td>
+        <td>{{{Tier}}}</td>
+        <td>{{{City}}}</td>
+        <td>{{{Website}}}</td>
+        <td>{{{Status}}}</td>
+        <td>
+            @{
+                if ((await AuthorizationService.AuthorizeAsync(User, "JOB", Operations.Update)).Succeeded)
+                {
+                    <button type="button" class="btn btn-sm btn-dark btn-edit-job" data-id="{{Id}}"><i class="fa fa-pencil"></i></button>
+                }
+                if ((await AuthorizationService.AuthorizeAsync(User, "JOB", Operations.Delete)).Succeeded)
+                {
+                    <button type="button" class="btn btn-sm btn-danger btn-delete-job" data-id="{{Id}}"><i class="fa fa-trash"></i></button>
+                }
+            }
+
+        </td>
+    </tr>
+</script>
+<partial name="_ExcelOptionModal.cshtml">
+    <partial name="_AddEditJobModal.cshtml">

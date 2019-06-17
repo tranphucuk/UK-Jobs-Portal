@@ -1,0 +1,112 @@
+﻿@model JobPortalv21.Models.Account.LoginModel
+@inject SignInManager<AppUser> SignInManager
+@using PaulMiami.AspNetCore.Mvc.Recaptcha
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var returnurl = (ViewData["ReturnUrl"]).ToString();
+}
+
+<div class="unit-5 overlay" style="background-image: url('/client-side/images/hero_bg_2.jpg');">
+    <div class="container text-center">
+        <h2 class="mb-0">Login Account</h2>
+        <p class="mb-0 unit-6"><a href="/">Home</a></p>
+    </div>
+</div>
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 mb-5">
+                <form method="post" asp-route-returnurl="@returnurl" id="frm-login" class="p-5 bg-white">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    @Html.AntiForgeryToken()
+                    @*<h4>Login</h4>
+                        <p class="before-login-text">Welcome back! Sign in to your account</p>*@
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="font-weight-bold" for="email">Email</label>
+                            <input type="text" asp-for="Email" id="email" name="Email" class="form-control" placeholder="Email Address">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="font-weight-bold" for="email">Password</label>
+                            <input type="password" asp-for="Password" name="Password" id="txtPassword" class="form-control" placeholder="Password">
+                        </div>
+                    </div>
+                    <p class="forgot-pass"><a href="/forgot-password.html">Lost your password?</a></p>
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <recaptcha type="RecaptchaType.Image" />
+                            <span class="text-danger" id="recaptchaErrorMessage"></span>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Login" class="btn btn-primary  py-2 px-4 btn-login">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4">
+                <div class="p-4 mb-3 bg-white">
+                    <div class="register-benefits">
+                        <h5 class="reg-title">Sign up today and you will be able to :</h5>
+                        <ul class="list-not">
+                            <li>Speed your way through dashboard</li>
+                            <li>Note your own job easily</li>
+                            <li>Keep a record of all your job wishlist</li>
+                        </ul>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="button" onclick="window.location.href='/register.html'" value="Register" class="btn btn-primary  py-2 px-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 mb-3 bg-white">
+                    <section class="box-authentication">
+                        <h6 class="register-benefits">Use another service to log in.</h6>
+                        @{
+                            var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+                            if (loginProviders.Count == 0)
+                            {
+                                <div>
+                                    <p>
+                                        There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                        for details on setting up this ASP.NET application to support logging in via external services.
+                                    </p>
+                                </div>
+                            }
+                            else
+                            {
+                                <form asp-route-returnurl="@returnurl" asp-controller="Account" asp-action="ExternalLogin" method="post" class="form-horizontal">
+                                    <div>
+                                        <p>
+                                            @foreach (var provider in loginProviders)
+                                            {
+                                                <button type="submit" class="btn btn-default login-service" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                            }
+                                        </p>
+                                    </div>
+                                </form>
+                            }
+                        }
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/src/jquery.validate.unobtrusive.js"></script>
+    <recaptcha-script validation-message-element-id="recaptchaErrorMessage" />
+    <script src="~/client-side/js/app/login/login.min.js"></script>
+}
+
+

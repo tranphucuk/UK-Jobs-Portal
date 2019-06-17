@@ -1,0 +1,56 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="modal-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLongTitle"><strong>Contact Details</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form class="form-horizontal form-font" role="form" id="frm-contact">
+                        <input type="hidden" id="hid-contact-id" />
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <label class="control-label" for="name">Email</label>
+                                <div>
+                                    <input type="text" class="form-control" name="txtBlogName" id="txt-email" placeholder="Email..." />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <label class="control-label" for="name">Subject</label>
+                                <div>
+                                    <input type="text" class="form-control" name="txtCompany" id="txt-subject" placeholder="Subject..." />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="control-label" for="Content">Content</label>
+                                <div>
+                                    <textarea id="txt-content" style="width:100%" cols="8" rows="10" name="txtWishlistContent" placeholder="Content..."></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" id="hid-contact-date" />
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="ck-contact-status" />
+                                        <span class="text">Active &nbsp;</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCancel" data-dismiss="modal">Close</button>
+                <button type="button" id="btn-save-contact" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+

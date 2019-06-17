@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "User Job";
+}
+
+@section Scripts{
+    <script src="~/app/controller/wishlist/wishlist.min.js"></script>
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Wishlist</h3>
+    </div>
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+            <div class="input-group">
+                <input type="text" id="txt-blog-keyword" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-info" title="Search..." id="btn-search-blog" type="button">Go!</button>
+                </span>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <table class="table table-bordered table-striped" id="tbl-blog">
+                        <thead>
+                            <tr>
+                                <th width="3%">ID</th>
+                                <th>Username</th>
+                                <th>JobName</th>
+                                <th>Company</th>
+                                <th>Added Date</th>
+                                <th width="9%">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl-wishlist-content"></tbody>
+                    </table>
+                    <!--Pageination-->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            Show <select id="ddlShowPage">
+                                <option value="5" selected="selected">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                            <span class="item-per-page">
+                                Blog/Page.
+                            </span>
+                            Total Blog: <strong id="lbl-total-wishlist"></strong>
+                        </div>
+                        <div class="col-sm-5 pull-right dataTables_paginate">
+                            <ul id="pagination-wishlist" class="pagination-sm pull-right"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="tbl-wishlist-template" type="x-tmpl-mustache">
+    <tr>
+        <td><strong>{{Id}}</strong></td>
+        <td>{{Username}}</td>
+        <td>{{JobName}}</td>
+        <td>{{Company}}</td>
+        <td>{{{AddedDate}}}</td>
+        <td>
+            <button class="btn btn-sm btn-secondary btnViewWishlist" data-user="{{userId}}" title="View Wishlist" data-id="{{jobId}}"><i class="fa fa-eye-slash"></i></button>
+            <button class="btn btn-sm btn-danger btnRemoveWishlist" title="Remove" data-id="{{Id}}"><i class="fa fa-trash"></i></button>
+        </td>
+    </tr>
+</script>
+<partial name="_WishlistDetail.cshtml">

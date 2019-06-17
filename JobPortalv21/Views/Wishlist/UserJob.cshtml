@@ -1,0 +1,161 @@
+﻿@model JobPortalv21.Models.Wishlist.UserJobModel
+@using Microsoft.AspNetCore.Http.Extensions
+@using JobPortal.Data.Enum
+
+@{
+    ViewData["Title"] = Model.UserJobViewModel.Job.Company;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var job = Model.UserJobViewModel.Job;
+}
+
+@section Scripts{
+    <!--CkEditor-->
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <script src="~/client-side/js/app/userJob/userJob.min.js"></script>
+}
+
+<div class="unit-5 overlay" style="background-image: url('/client-side/images/hero_bg_2.jpg');">
+    <div class="container text-center">
+        <h2 class="mb-0">@job.Company</h2>
+        <p class="mb-0 unit-6"><a href="/">Home</a></p>
+    </div>
+</div>
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 mb-5">
+                <div class="p-5 bg-white widen-size">
+                    <div class="mb-4 mb-md-5 mr-5 detail-wt">
+                        <div class="job-post-item-header d-flex align-items-center">
+                            <h2 class="mr-3 text-black h4">@job.Industry</h2>
+                        </div>
+                        <div class="job-post-item-body d-block d-md-flex">
+                            <div class="badge-wrap">
+                                Rating: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="job-post-item-body d-block d-md-flex">
+                            @if (job.Tier == Tier.Both)
+                            {
+                                <div class="mr-3"><a>Sponsor: Tier 2, Tier 5TW</a></div>
+                            }
+                            else
+                            {
+                                <div class="mr-3"><a>Sponsor: @(job.Tier.GetDescription<Tier>())</a></div>
+                            }
+                        </div>
+                        <div class="job-post-item-body d-block d-md-flex">
+                            <div class="mr-3"><a>Company: @job.Company</a></div>
+                        </div>
+                        <div class="job-post-item-body d-block d-md-flex">
+                            <div><span>Location: @job.City</span></div>
+                        </div>
+                        <div class="job-post-item-body d-block d-md-flex">
+                            @if (job.Website.Length > 40)
+                            {
+                                <div>Website:<a href="@job.Website" target="_blank"> @job.Website.Substring(0, 40)</a></div>
+                            }
+                            else
+                            {
+                                <div>Website:<a href="@job.Website" target="_blank"> @job.Website</a></div>
+                            }
+                        </div>
+                        @if (job.Social.Contains("facebook"))
+                        {
+                            <div class="job-post-item-body d-block d-md-flex">
+                                @if (job.Social.Length > 40)
+                                {
+                                    <div>Facebook:<a href="@job.Social" target="_blank"> Facebook</a></div>
+                                }
+                                else
+                                {
+                                    <div>Facebook:<a href="@job.Social" target="_blank"> Facebook</a></div>
+                                }
+                            </div>
+                        }
+                        @if (job.Social.Contains("linkedin"))
+                        {
+                            @if (job.Social.Length > 40)
+                            {
+                                <div class="job-post-item-body d-block d-md-flex">
+                                    <div>Linkedin:<a href="@job.Social" target="_blank"> Linkedin</a></div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="job-post-item-body d-block d-md-flex">
+                                    <div>Linkedin:<a href="@job.Social" target="_blank"> Linkedin</a></div>
+                                </div>
+                            }
+                        }
+
+                        <div class="job-post-item-body d-block d-md-flex">
+                            <div class="mr-3"><a>Date added: @job.AddedDate.ToShortDateString()</a></div>
+                        </div>
+                        <hr class="mock-scal"/>
+                        <form method="post" id="frm-content">
+                            @Html.AntiForgeryToken()
+                            <div class="job-post-item-body d-block d-md-flex">
+                                @*<div class="mr-3"><a>Company: @job.Company</a></div>*@
+                                <div class="mr-3"><span>Note (max 2000 characters):</span></div>
+                            </div>
+
+                            <div class="job-post-item-body d-block d-md-flex">
+                                <textarea name="Content" maxlength="1000" class="form-control" id="txt-content" cols="30" rows="8">@Model.UserJobViewModel.UserNote</textarea>
+                            </div>
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div><span class="erro-display"></span></div>
+                            <div class="row form-group top-mar">
+                                <div class="col-md-12">
+                                    <input type="button" data-id="@Model.UserJobViewModel.JobId" value="Save" class="btn btn-primary  py-2 px-4 btn-note-content">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="p-4 mb-3 bg-white">
+                    <h3 class="h5 text-black mb-3 text-menu">My Account</h3>
+                    <div class="job-tag">
+                        @{
+                            var currentUrl = @Context.Request.GetDisplayUrl();
+                        }
+                        <ul class="tree-menu url-dash" style="list-style: none;">
+                            @foreach (var url in Model.Urls)
+                            {
+                                if (currentUrl.Contains(url.Value))
+                                {
+                                    <li class="url-current"><a href="@url.Value">@url.Name</a></li>
+                                }
+                                else if (url.Value.Contains("wishlist"))
+                                {
+                                    <li class="url-current"><a href="@url.Value">@url.Name</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@url.Value">@url.Name</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-4 mb-3 bg-white">
+                    <h3 class="h5 text-black mb-3 text-menu">Popular Tags</h3>
+                    <div class="job-tag">
+                        <ul class="tree-menu">
+                            @foreach (var tag in Model.Tags)
+                            {
+                                <li class="tag-style"><a class="tag-link" href="/tags/@(tag.Id).html">@tag.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

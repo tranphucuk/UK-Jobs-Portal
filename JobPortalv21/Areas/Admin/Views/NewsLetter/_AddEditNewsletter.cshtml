@@ -1,0 +1,49 @@
+﻿<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="add-newsletter-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:750px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLongTitle"><strong>Add/Edit Newsletter</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form class="form-horizontal form-font" role="form" id="frm-news">
+                        <input type="hidden" id="hid-news-id" />
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="control-label" for="Title">Title</label>
+                                <div>
+                                    <input type="text" name="txtNewsletterTitle" id="txt-news-title" class="form-control" placeholder="Title..." />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="control-label" for="Newsletter"></label>
+                                <div>
+                                    <textarea id="txt-news-content" name="txtNewsContent" placeholder="Content..."></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" id="hid-news-date" />
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" checked="checked" id="ck-news-status" />
+                                        <span class="text">Active &nbsp;</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCancel" data-dismiss="modal">Close</button>
+                <button type="button" id="btn-save-news" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,73 @@
+﻿<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="add-edit-blog" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLongTitle"><strong>Add/Edit Blog</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form class="form-horizontal form-font" role="form" id="frm-blog">
+                        <input type="hidden" id="hid-blog-id" />
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <label class="control-label" for="name">Name</label>
+                                <div>
+                                    <input type="text" class="form-control" name="txtBlogName" id="txt-blog-name" placeholder="Name..." />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <label class="control-label" for="thumbnail">Thumbnail</label>
+                                <div>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="file-blog-thumbnail" accept="image/*" style="display:none">
+                                        <input type="text" name="txtBlogThumbnail" class="form-control" id="txt-blog-thumbnail" readonly />
+                                        <span class="input-group-btn">
+                                            <input type="button" id="btn-select-thumbnail" class="btn btn-dark" value="Browser" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="control-label" for="description">Description</label>
+                                <div>
+                                    <input type="text" name="txtBlogDescription" id="txt-blog-description" class="form-control" placeholder="Description..." />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="control-label" for="blogContent"></label>
+                                <div>
+                                    <textarea id="txt-blog-content" cols="8" rows="10" name="txtBlogContent" placeholder="Content..."></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" id="hid-blog-date" />
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="ck-blog-status" checked="checked" />
+                                        <span class="text">Active &nbsp;</span>
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="ck-blog-hot" />
+                                        <span class="text">Hot</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCancel" data-dismiss="modal">Close</button>
+                <button type="button" id="btn-save-blog" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+

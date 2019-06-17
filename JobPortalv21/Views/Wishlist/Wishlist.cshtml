@@ -1,0 +1,121 @@
+﻿@model JobPortalv21.Models.Wishlist.WishlistModel
+@using Microsoft.AspNetCore.Http.Extensions
+
+@{
+    ViewData["Title"] = "Wishlist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/client-side/js/app/wishlist/wishlist.min.js"></script>
+}
+
+<div class="unit-5 overlay" style="background-image: url('/client-side/images/hero_bg_2.jpg');">
+    <div class="container text-center">
+        <h2 class="mb-0">My Wishlist</h2>
+        <p class="mb-0 unit-6"><a href="/">Home</a></p>
+    </div>
+</div>
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 mb-5">
+                <div class="p-5 bg-white padding-uni">
+                    <div class="mb-4 mb-md-5 mr-5 padding-r">
+                        <div class="welcome-msg">
+                            <strong>Hello, @Model.User.Fullname!!</strong>
+                            <p>From your My Account Dashboard you have the ability to view and change your jobs wishlist.</p>
+                        </div>
+                        <div class="job-post-item-body d-block d-md-flex">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th width="5%">#</th>
+                                        <th class="d-none d-sm-table-cell">Industry</th>
+                                        <th>Company</th>
+                                        @*<th class="d-none d-sm-table-cell">Date</th>*@
+                                        <th width="5%">Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var wishlist in Model.Wishlist.Result)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a href="#" class="btn-delete-product wish-styl" title="Remove" data-id="@wishlist.Id">X</a>
+                                            </td>
+                                            <td class="d-none d-sm-table-cell">
+                                                @if (wishlist.Job.Industry.Length > 20)
+                                                {
+                                                    @(wishlist.Job.Industry.Substring(0, 20) + "...")
+                                                }
+                                                else
+                                                {
+                                                    @wishlist.Job.Industry
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (wishlist.Job.Company.Length > 30)
+                                                {
+                                                    @(wishlist.Job.Company.Substring(0, 30) + "...")
+                                                }
+                                                else
+                                                {
+                                                    @(wishlist.Job.Company)
+                                                }
+                                            </td>
+                                            @*<td class="d-none d-sm-table-cell">@wishlist.CreatedDate.ToShortDateString()</td>*@
+                                            <td>
+                                                <span class="nobr">
+                                                    <a href="/my-job/@(wishlist.JobId).html">View</a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        @await Component.InvokeAsync("Pager", Model.Wishlist)
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="p-4 mb-3 bg-white">
+                    <h3 class="h5 text-black mb-3 text-menu">My Account</h3>
+                    <div class="job-tag">
+                        @{
+                            var currentUrl = @Context.Request.GetDisplayUrl();
+                        }
+                        <ul class="tree-menu url-dash" style="list-style: none;">
+                            @foreach (var url in Model.Urls)
+                            {
+                                if (currentUrl.Contains(url.Value))
+                                {
+                                    <li class="url-current"><a href="@url.Value">@url.Name</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@url.Value">@url.Name</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-4 mb-3 bg-white">
+                    <h3 class="h5 text-black mb-3 text-menu">Popular Tags</h3>
+                    <div class="job-tag">
+                        <ul class="tree-menu">
+                            @foreach (var tag in Model.Tags)
+                            {
+                                <li class="tag-style"><a class="tag-link" href="/tags/@(tag.Id).html">@tag.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

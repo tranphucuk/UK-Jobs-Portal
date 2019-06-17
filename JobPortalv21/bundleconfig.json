@@ -1,0 +1,20 @@
+[
+  {
+    "outputFileName": "wwwroot/client-side/css/custom.min.css",
+    "inputFiles": [
+      "wwwroot/client-side/css/custom.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/client-side/js/app/share/base.min.js",
+    "inputFiles": [
+      "wwwroot/client-side/js/app/share/base.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/client-side/js/app/userJob/userJob.min.js",
+    "inputFiles": [
+      "wwwroot/client-side/js/app/userJob/userJob.js"
+    ]
+  }
+]

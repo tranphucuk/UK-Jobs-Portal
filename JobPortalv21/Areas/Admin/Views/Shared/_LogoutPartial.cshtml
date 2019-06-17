@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using JobPortal.Data.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li>
+        <form method="post" asp-area="Admin" asp-controller="User" asp-action="SignOut">
+            <button type="submit" class="btn btn-link btn-xs" style="padding: 12px 20px;color: #5A738E;font-size: 12px;">
+                <i class="fa fa-sign-out pull-right"></i>Log Out
+            </button>
+        </form>
+    </li>
+}
